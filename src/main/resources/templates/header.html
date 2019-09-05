@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="header" id="header" class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" style="line-height: 49px; padding: 0 100px 0 100px">
+        <img src="/static/imgs/logo.png" alt="LOGO">
+        <!--<span id="currentUser" th:text="${session.user}">未登录</span>-->
+        <span th:if="${session.user}!=null">
+            <span th:text="${session.user.username}"></span>
+        </span>
+        <div style="float: right">
+            <button class="btn btn-primary" type="button">
+                购物车 <span class="badge">0</span>
+            </button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myregister">注册</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#mylogin">登录</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myloginout">退出</button>
+        </div>
+    </nav>
+    <div id="mylogin" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginusername">用户账号</label>
+                            <input type="text" class="form-control" id="loginusername" placeholder="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginpassword">用户密码</label>
+                            <input type="password" class="form-control" id="loginpassword" placeholder="Password" name="password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="button" class="btn btn-primary login" value="登录"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="myregister" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">注册</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">用户账号</label>
+                            <input type="text" class="form-control" id="username" placeholder="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">用户密码</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="birth">出生年月</label>
+                            <input type="date" class="form-control" id="birth" placeholder="birth" name="birth">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系方法</label>
+                            <input type="text" class="form-control" id="phone" placeholder="phone" name="phone">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary regsiter">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myloginout" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myOut">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myOut">退出</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="button" class="btn btn-primary loginout" value="确定"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            //加载购物车
+
+
+
+            $("#myregister .regsiter").on('click',function () {
+                //注册
+                //1 获取参数
+                var user = {}
+                user["username"]=$("#username").val()
+                user["password"]=$("#password").val()
+                user["birth"]=$("#birth").val()
+                user["phone"]=$("#phone").val()
+
+                //2 提交注册请求
+                $.post("/regsiter",user,function (data) {
+                    $("#myregister").modal('hide')
+                    alert(data.message)
+                },'json')
+            })
+
+
+            $("#mylogin .login").on('click',function () {
+                var user = {}
+                user["username"]=$("#loginusername").val()
+                user["password"]=$("#loginpassword").val()
+
+                $.post('/login',user,function (data) {
+                    $("#mylogin").modal('hide')
+                    alert(data.message)
+                },'json')
+
+            })
+
+            $("#myloginout .loginout").on('click',function () {
+                $.post('/loginout',function (data) {
+                    $("myloginout").modal("hide")
+                    alert(data.message)
+                })
+
+            },'json')
+
+
+
+
+        })
+
+    </script>
+</div>
+
+
+
+</body>
+</html>

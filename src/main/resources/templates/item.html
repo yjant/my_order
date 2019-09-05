@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <script src="/static/js/jquery-2.1.1.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/item.css">
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--header-->
+<div th:replace="/header.html::header"></div>
+<div id="content" class="container">
+    <!--search-->
+    <div th:replace="/searchitem.html::search"></div>
+    <div class="item">
+        <div class="item_1">
+            <img src="/static/items/book1.jpg" alt="">
+        </div>
+        <div class="item_2">
+            <h3>机械革命</h3>
+            <h2><span>价格:</span><span>￥</span><b>5999.99</b></h2>
+            <p><span>说明:</span>八金八钻，江浙沪包邮</p>
+            <p><span>库存:</span><b>999</b></p>
+            <p>
+                <input class="form-control" type="number" value="1">
+            </p>
+            <p>
+                <button class="btn btn-success">加入购物车</button>
+            </p>
+        </div>
+    </div>
+</div>
+<!--footer-->
+<div th:replace="/footer.html::footer"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <script src="/static/js/jquery-2.1.1.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/search.css">
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--header-->
+<div th:replace="/header.html::header"></div>
+<div id="content" class="container">
+    <!--search-->
+    <div th:replace="/searchitem.html::search"></div>
+    <div class="success">
+        <h1>支付成功</h1>
+        <h2><a href="">回到购物车</a></h2>
+    </div>
+</div>
+<!--footer-->
+<div th:replace="/footer.html::footer"></div>
+</body>
+</html>

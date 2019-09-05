@@ -1,0 +1,35 @@
+#header{
+    height: 49px;
+}
+
+#content .search{
+    clear: both;
+    margin: 50px auto;
+    width: 60%;
+}
+
+#content{
+    margin: 50px auto;
+}
+
+#content .play{
+    width: 500px;
+}
+
+#footer{
+    padding: 20px 0;
+}
+
+#footer ul>li{
+    font-size: 14px;
+    color: white;
+    margin: 50px 0px;
+    display: inline-block;
+    list-style: none;
+}
+#footer ul>li a{
+    font-size: 14px;
+    color: white;
+    padding: 4px 10px;
+}
+

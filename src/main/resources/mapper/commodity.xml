@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iweb.my_order.dao.CommodityDao">
+
+    <select id="queryByName" resultType="com.iweb.my_order.entity.Commodity" parameterType="java.lang.String">
+      SELECT  spid,
+               name,
+               descri,
+               imgpath,
+               price,
+               count from t_commodity where name like  CONCAT(CONCAT('%',#{name,jdbcType=VARCHAR}),'%');
+    </select>
+
+
+    <select id="queryByPrimarykey" resultType="com.iweb.my_order.entity.Commodity" parameterType="java.lang.Integer">
+        SELECT  spid,
+                 name,
+                 descri,
+                 imgpath,
+                 price,
+                 count
+                 FROM t_commodity WHERE spid = #{spid,jdbcType=INTEGER}
+    </select>
+
+
+
+
+
+
+</mapper>
